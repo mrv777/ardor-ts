@@ -261,15 +261,15 @@ export type DeleteAccountPropertyResponse = BroadcastTransactionResponse
 
 
 export interface IRequest {
-    getBalance: (url: string, params: GetBalanceParams) => Promise<GetBalanceResponse>;
-    getBlockchainTransactions: (url: string, params: GetBlockchainTransactionsParams) => Promise<GetBlockchainTransactionsResponse>;
-    decodeToken: (url: string, params: DecodeTokenParams) => Promise<DecodeTokenResponse>;
-    getBundlerRates: (url: string, params: GetBundlerRatesParams) => Promise<GetBundlerRatesResponse>;
-    getAccountProperties: (url: string, params: GetAccountPropertiesParams) => Promise<GetAccountPropertiesResponse>;
-    sendMoney: (url: string, params: SendMoneyParams) => Promise<SendMoneyResponse>;
-    broadcastTransaction: (url: string, params: BroadcastTransactionParams) => Promise<BroadcastTransactionResponse>;
-    setAccountProperty: (url: string, params: SetAccountPropertyParams) => Promise<SetAccountPropertyResponse>;
-    deleteAccountProperty: (url: string, params: DeleteAccountPropertyParams) => Promise<DeleteAccountPropertyResponse>;
+    getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse>;
+    getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse>;
+    decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse>;
+    getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse>;
+    getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse>;
+    sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>;
+    broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse>;
+    setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>;
+    deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse>;
 }
 
 
@@ -279,19 +279,19 @@ export interface IPassphrase {
 
 
 export interface IAccount {
-    convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean) => string | Array<number>;
-    convertPublicKeyToAccountId: (publicKey: string) => string;
-    convertPublicKeyToAccountRs: (publicKey: string) => string;
-    convertPassphraseToAccountId: (passphrase: string) => string;
-    convertPassphraseToAccountRs: (passphrase: string) => string;
-    checkAccountRs: (accountRs: string) => boolean;
-    generateToken: (message: string, passphrase: string, forTestnet?: boolean) => string;
-    signTransactionBytes: (unsignedTransactionBytesHex: string, passphrase: string) => string;
-    verifyTransactionBytes: (unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string) => boolean;
+    convertPassphraseToPublicKey(passphrase: string, toByteArray?: boolean): string | Array<number>;
+    convertPublicKeyToAccountId(publicKey: string): string;
+    convertPublicKeyToAccountRs(publicKey: string): string;
+    convertPassphraseToAccountId(passphrase: string): string;
+    convertPassphraseToAccountRs(passphrase: string): string;
+    checkAccountRs(accountRs: string): boolean;
+    generateToken(message: string, passphrase: string, forTestnet?: boolean): string;
+    signTransactionBytes(unsignedTransactionBytesHex: string, passphrase: string): string;
+    verifyTransactionBytes(unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string): boolean;
 }
 
 
 export interface ITime {
-    convertUnixToArdorTimestamp: (timestampInMsec: number, isTestnetTimestamp?: boolean) => number;
-    convertArdorToUnixTimestamp: (timestamp: number, isTestnetTimestamp?: boolean) => number;
+    convertUnixToArdorTimestamp(timestampInMsec: number, isTestnetTimestamp?: boolean): number;
+    convertArdorToUnixTimestamp(timestamp: number, isTestnetTimestamp?: boolean): number;
 }
