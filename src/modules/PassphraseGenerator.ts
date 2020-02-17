@@ -1,5 +1,5 @@
-import * as bip39 from 'bip39'
-import { IPassphrase } from '../types';
+import * as bip39 from "bip39";
+import { IPassphrase } from "../types";
 
 
 export default class PassphraseGenerator implements IPassphrase {
@@ -8,7 +8,7 @@ export default class PassphraseGenerator implements IPassphrase {
         bip39.setDefaultWordlist("english");
     }
 
-    
+
     public generate = (): string => {
         return bip39.generateMnemonic();
     }

@@ -1,18 +1,18 @@
-import config from './config'
-import { passphrase, Passphrase } from "../src/index"
+import { passphrase, Passphrase } from "../src/index";
+import config from "./config";
 
 
-if(config.test.passphraseModule) {
-    describe('Passphrase module tests', () => {
+if (config.test.passphraseModule) {
+    describe("Passphrase module tests", () => {
 
-        test('generate', () => {
+        test("generate", () => {
             const secret = passphrase.generate();
             expect(secret).toBeDefined();
             expect(secret.split(" ").length).toBe(12);
         });
 
 
-        test('generate with own instance', () => {
+        test("generate with own instance", () => {
             const ownPassphrase = new Passphrase();
 
             const secret = ownPassphrase.generate();
@@ -22,7 +22,7 @@ if(config.test.passphraseModule) {
 
     });
 } else {
-    test('dummy', () => { 
-        expect(true).toBeTruthy(); 
+    test("dummy", () => {
+        expect(true).toBeTruthy();
     });
 }

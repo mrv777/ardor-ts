@@ -1,4 +1,7 @@
-export type objectAny = {[name: string]: any};
+/*eslint-disable-next-line @typescript-eslint/no-explicit-any*/
+export type secureAny = any; // same as any, but used when it's intended and secure
+
+export type objectAny = {[name: string]: secureAny};
 
 
 export enum ChainId {
@@ -10,13 +13,13 @@ export enum ChainId {
 }
 
 
-export interface ErrorResponse {
+export type ErrorResponse = {
     errorDescription: string;
     errorCode: number;
 }
 
 
-export interface GetBalanceParams {
+export type GetBalanceParams = {
     chain: ChainId;
     account: string;
     height?: number;
@@ -24,19 +27,19 @@ export interface GetBalanceParams {
     requireLastBlock?: number;
 }
 
-export interface GetBalanceResponse {
+export type GetBalanceResponse = {
     unconfirmedBalanceNQT: string;
     balanceNQT: string;
     requestProcessingTime: number;
 }
 
 
-export interface DecodeTokenParams {
+export type DecodeTokenParams = {
     data: string;
     token: string;
 }
 
-export interface DecodeTokenResponse {
+export type DecodeTokenResponse = {
     valid: boolean;
     accountRS: string;
     requestProcessingTime: number;
@@ -45,7 +48,7 @@ export interface DecodeTokenResponse {
 }
 
 
-export interface GetBlockchainTransactionsParams {
+export type GetBlockchainTransactionsParams = {
     chain: ChainId;
     account: string;
     timestamp?: number;
@@ -93,7 +96,7 @@ export enum ChildTransactionType  {
     VOTING = 9,
     ACCOUNT_PROPERTY = 10,
     COIN_EXCHANGE = 11,
-    LIGHT_CONTRACT = 12 
+    LIGHT_CONTRACT = 12
 }
 
 export enum ChildTransactionSubtype {
@@ -164,18 +167,18 @@ export enum ChildTransactionSubtype {
     CONTRACT_REFERENCE__DELETE = 1
 }
 
-export interface GetBlockchainTransactionsResponse {
+export type GetBlockchainTransactionsResponse = {
     requestProcessingTime: number;
     transactions: [ objectAny? ];
 }
 
 
-export interface GetBundlerRatesParams {
+export type GetBundlerRatesParams = {
     minBundlerBalanceFXT?: number;
     minBundlerFeeLimitFQT?: number;
 }
 
-export interface GetBundlerRatesResponse {
+export type GetBundlerRatesResponse = {
     rates: [{
         minRateNQTPerFXT: string;
         currentFeeLimitFQT: string;
@@ -187,13 +190,13 @@ export interface GetBundlerRatesResponse {
 }
 
 
-export interface GetAccountPropertiesParams {
+export type GetAccountPropertiesParams = {
     recipient?: string;
     setter?: string;
     property?: string;
 }
 
-export interface GetAccountPropertiesResponse {
+export type GetAccountPropertiesResponse = {
     setterRS?: string;
     setter?: string;
     recipientRS?: string;
@@ -210,51 +213,51 @@ export interface GetAccountPropertiesResponse {
 }
 
 
-export interface SendMoneyParams {
+export type SendMoneyParams = {
     chain: ChainId;
     secretPhrase: string;
     recipient: string;
     amountNQT: number;
-    [name: string]: any;
+    [name: string]: secureAny;
 }
 
-export interface SendMoneyResponse extends BroadcastTransactionResponse {}
+export type SendMoneyResponse = BroadcastTransactionResponse
 
 
-export interface BroadcastTransactionParams {
+export type BroadcastTransactionParams = {
     transactionJSON?: objectAny;
     transactionBytes?: string;
     prunableAttachmentJSON?: objectAny;
 }
 
-export interface BroadcastTransactionResponse {
+export type BroadcastTransactionResponse = {
     requestProcessingTime: number;
     fullHash: string;
 }
 
 
-export interface SetAccountPropertyParams {
+export type SetAccountPropertyParams = {
     chain: ChainId;
     recipient: string;
     property: string;
     value: string;
     secretPhrase: string;
-    [name: string]: any;
+    [name: string]: secureAny;
 }
 
-export interface SetAccountPropertyResponse extends BroadcastTransactionResponse {}
+export type SetAccountPropertyResponse = BroadcastTransactionResponse
 
 
-export interface DeleteAccountPropertyParams {
+export type DeleteAccountPropertyParams = {
     chain: ChainId;
     property: string;
     secretPhrase: string;
     recipient?: string;
     setter?: string;
-    [name: string]: any;
+    [name: string]: secureAny;
 }
 
-export interface DeleteAccountPropertyResponse extends BroadcastTransactionResponse {}
+export type DeleteAccountPropertyResponse = BroadcastTransactionResponse
 
 
 export interface IRequest {

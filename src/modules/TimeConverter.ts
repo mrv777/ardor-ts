@@ -1,13 +1,12 @@
 import { ITime } from "../types";
 
 
-export default class TimeConverter implements ITime{
+export default class TimeConverter implements ITime {
 
     private readonly ardorBeginTimestamp = {
         testnet: 1514296800000,
         mainnet: 1514764800000
     };
-
 
 
     public convertUnixToArdorTimestamp = (timestampInMsec: number, isTestnetTimestamp = false): number => {
@@ -21,5 +20,5 @@ export default class TimeConverter implements ITime{
         return isTestnetTimestamp ? timestamp + this.ardorBeginTimestamp.testnet
                                   : timestamp + this.ardorBeginTimestamp.mainnet;
     }
-    
+
 }
