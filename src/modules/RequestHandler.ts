@@ -33,30 +33,30 @@ export default class RequestHandler implements IRequest {
     private readonly config = { headers: { "Content-Type": "application/x-www-form-urlencoded" } };
 
 
-    public getBalance = async (url: string, params: GetBalanceParams): Promise<GetBalanceResponse> => {
+    public async getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse> {
         return this.infoRequest("getBalance", url, params) as Promise<GetBalanceResponse>;
     }
 
-    private infoRequest = async (requestType: string, url: string, params: objectAny): Promise<objectAny> => {
+    private async infoRequest(requestType: string, url: string, params: objectAny): Promise<objectAny> {
         params.requestType = requestType;
         return this.getRequest(url, params).then(response => this.setPromiseReturn(response.data));
     }
 
-    private getRequest = async (url: string, params: objectAny): Promise<AxiosResponse<objectAny>> => {
+    private async getRequest(url: string, params: objectAny): Promise<AxiosResponse<objectAny>> {
         return axios.get(this.checkUrlPrefix(url), { params });
     }
 
-    private checkUrlPrefix = (url: string): string => {
+    private checkUrlPrefix(url: string): string {
         return url.endsWith("/nxt") ? url : url += "/nxt";
     }
 
-    private setPromiseReturn = (responseData: objectAny): Promise<objectAny> => {
+    private setPromiseReturn(responseData: objectAny): Promise<objectAny> {
         return (responseData as ErrorResponse).errorCode ? Promise.reject(responseData as ErrorResponse)
                                                          : Promise.resolve(responseData);
     }
 
 
-    public decodeToken = async (url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse> => {
+    public async decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse> {
         const _params = params as objectAny;
         _params.website = params.data;
         delete _params.data;
@@ -65,31 +65,31 @@ export default class RequestHandler implements IRequest {
     }
 
 
-    public getBlockchainTransactions = async (url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse> => {
+    public async getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse> {
         return this.infoRequest("getBlockchainTransactions", url, params) as Promise<GetBlockchainTransactionsResponse>;
     }
 
 
-    public getBundlerRates = async (url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse> => {
+    public async getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse> {
         return this.infoRequest("getBundlerRates", url, params) as Promise<GetBundlerRatesResponse>;
     }
 
 
-    public getAccountProperties = async (url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse> => {
+    public getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse> {
         return this.infoRequest("getAccountProperties", url, params) as Promise<GetAccountPropertiesResponse>;
     }
 
 
-    public sendMoney = async (url: string, params: SendMoneyParams): Promise<SendMoneyResponse> => {
+    public async sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse> {
         return this.transactionRequest("sendMoney", url, params) as Promise<SendMoneyResponse>;
     }
 
-    private transactionRequest = async (requestType: string, url: string, params: objectAny): Promise<objectAny> => {
+    private async transactionRequest(requestType: string, url: string, params: objectAny): Promise<objectAny> {
         params.requestType = requestType;
         return this.postTransactionRequest(url, params).then(response => this.setPromiseReturn(response.data));
     }
 
-    private postTransactionRequest = async (url: string, params: objectAny): Promise<AxiosResponse<objectAny>> => {
+    private async postTransactionRequest(url: string, params: objectAny): Promise<AxiosResponse<objectAny>> {
         const query = { ...params };
 
         delete query.requestType;
@@ -101,7 +101,9 @@ export default class RequestHandler implements IRequest {
 
 
         const response = await axios.post(url + "?requestType=" + params.requestType, qs.stringify(query), this.config);
-        if ((response.data as ErrorResponse).errorCode) {return this.convertErrorToAxiosResponse(response.data)}
+        if ((response.data as ErrorResponse).errorCode) {
+            return this.convertErrorToAxiosResponse(response.data);
+        }
 
         const unsignedTransactionBytesHex = response.data.unsignedTransactionBytes;
         const transactionJSON = response.data.transactionJSON;
@@ -115,7 +117,7 @@ export default class RequestHandler implements IRequest {
         return this.broadcast(url + "?requestType=broadcastTransaction", { transactionBytes: signedTransactionBytesHex, transactionJSON });
     }
 
-    private convertErrorToAxiosResponse = (error: ErrorResponse): AxiosResponse => {
+    private convertErrorToAxiosResponse(error: ErrorResponse): AxiosResponse {
         return {
             data: error,
             status: 200,
@@ -125,23 +127,23 @@ export default class RequestHandler implements IRequest {
         };
     }
 
-    private broadcast = async (url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<objectAny>> => {
+    private async broadcast(url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<objectAny>> {
         return axios.post(url, qs.stringify(params), this.config);
     }
 
 
-    public broadcastTransaction = async (url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse> => {
+    public async broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse> {
         return this.broadcast(url + "?requestType=broadcastTransaction", params)
                .then(response => this.setPromiseReturn(response.data)) as Promise<BroadcastTransactionResponse>;
     }
 
 
-    public setAccountProperty = async (url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse> => {
+    public async setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse> {
         return this.transactionRequest("setAccountProperty", url, params) as Promise<SetAccountPropertyResponse>;
     }
 
 
-    public deleteAccountProperty = async (url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse> => {
+    public async deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse> {
         return this.transactionRequest("deleteAccountProperty", url, params) as Promise<DeleteAccountPropertyResponse>;
     }
 
