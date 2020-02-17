@@ -9,13 +9,13 @@ export default class TimeConverter implements ITime {
     };
 
 
-    public convertUnixToArdorTimestamp = (timestampInMsec: number, isTestnetTimestamp = false): number => {
+    public convertUnixToArdorTimestamp(timestampInMsec: number, isTestnetTimestamp = false): number {
         return isTestnetTimestamp ? Math.floor((timestampInMsec - this.ardorBeginTimestamp.testnet) / 1000)
                                   : Math.floor((timestampInMsec - this.ardorBeginTimestamp.mainnet) / 1000);
     }
 
 
-    public convertArdorToUnixTimestamp = (timestamp: number, isTestnetTimestamp = false): number => {
+    public convertArdorToUnixTimestamp(timestamp: number, isTestnetTimestamp = false): number {
         timestamp *= 1000;
         return isTestnetTimestamp ? timestamp + this.ardorBeginTimestamp.testnet
                                   : timestamp + this.ardorBeginTimestamp.mainnet;
