@@ -9,17 +9,17 @@ At the current state this library is published to the GitHub npm registry only.
 To use it as a dependency, create an *.npmrc* file in the same directory as your *package.json* and add the following line 
 
 ````
-@somedotone:registry=https://npm.pkg.github.com/somedotone
+@blobaa:registry=https://npm.pkg.github.com/blobaa
 ```` 
 
-This tells npm to use the GitHub registry for scoped somedotone packages.
+This tells npm to use the GitHub registry for scoped blobaa packages.
 You can now install the npm package via
 
 ````
-npm install @somedotone/ardor-ts@<release version>
+npm install @blobaa/ardor-ts@<release version>
 ````
 
-More information can be found at the [npm package](https://github.com/somedotone/ardor-ts/packages/81399) description and [this medium post](https://medium.com/@crysfel/using-different-registries-in-yarn-and-npm-766541d6f851) about multiple registry usage.
+More information can be found at the [npm package](https://github.com/blobaa/ardor-ts/packages/81399) description and [this medium post](https://medium.com/@crysfel/using-different-registries-in-yarn-and-npm-766541d6f851) about multiple registry usage.
 
 
 ## Test
@@ -58,7 +58,7 @@ An example request to get the current account balance might look like this:
 
 
 ````typescript
-import { request, GetBalanceParams, ChainId, ErrorResponse } from '@somedotone/ardor-ts'
+import { request, GetBalanceParams, ChainId, ErrorResponse } from '@blobaa/ardor-ts'
 
 
 const exampleRequest = async () => {
@@ -169,7 +169,7 @@ It provides the following APIs:
 Each module is pre instantiated and importable via the lower case module name. If you need the class definition of a module, import it via the upper case name. For example:
 
 ````typescript
-import { passphrase, Passphrase } from '@somedotone/ardor-ts'
+import { passphrase, Passphrase } from '@blobaa/ardor-ts'
 
 
 /* use the default instance */
