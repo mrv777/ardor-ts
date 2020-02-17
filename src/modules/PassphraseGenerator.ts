@@ -9,7 +9,7 @@ export default class PassphraseGenerator implements IPassphrase {
     }
 
 
-    public generate = (): string => {
+    public generate(): string {
         return bip39.generateMnemonic();
     }
 
