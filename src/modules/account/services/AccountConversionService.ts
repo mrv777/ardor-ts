@@ -1,8 +1,8 @@
 import * as ardorjs from "ardorjs";
-import { IConversionService } from "../../internal-types";
+import { IAccountConversionService } from "../../internal-types";
 
 
-export default class ConversionService implements IConversionService {
+export default class AccountConversionService implements IAccountConversionService {
 
     public idToRs(accountId: string): string {
         return ardorjs.rsConvert(accountId).accountRs;

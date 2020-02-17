@@ -1,6 +1,6 @@
 import { IAccount } from "../../types";
-import ConversionController from "./controllers/ConversionController";
-import ConversionService from "./services/ConversionService";
+import AccountConversionController from "./controllers/AccountConversionController";
+import AccountConversionService from "./services/AccountConversionService";
 import TrxSignatureController from "./controllers/TrxSignatureController";
 import TrxSignatureService from "./services/TrxSignatureService";
 import TokenController from "./controllers/TokenController";
@@ -11,41 +11,38 @@ import AccountCheckService from "./services/AccountCheckService";
 
 export default class AccountHandler implements IAccount {
 
-    private readonly ALPHABET = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
-
-
     public convertAccountIdToAccountRs(accountId: string): string {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.idToRs(accountId);
     }
 
 
     public convertPassphraseToPublicKey(passphrase: string, toByteArray = false): string | Array<number> {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.passphraseToPublicKey(passphrase, toByteArray);
     }
 
 
     public convertPublicKeyToAccountId(publicKey: string): string {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.publicKeyToId(publicKey);
     }
 
 
     public convertPublicKeyToAccountRs(publicKey: string): string {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.publicKeyToRs(publicKey);
     }
 
 
     public convertPassphraseToAccountId(passphrase: string): string {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.passphraseToId(passphrase);
     }
 
 
     public convertPassphraseToAccountRs(passphrase: string): string {
-        const controller = new ConversionController(new ConversionService());
+        const controller = new AccountConversionController(new AccountConversionService());
         return controller.passphraseToRs(passphrase);
     }
 

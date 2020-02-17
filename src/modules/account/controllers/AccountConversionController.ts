@@ -1,11 +1,11 @@
-import { IConversionService } from "../../internal-types";
+import { IAccountConversionService } from "../../internal-types";
 
 
-export default class ConversionController {
-    private readonly service: IConversionService
+export default class AccountConversionController {
+    private readonly service: IAccountConversionService
 
 
-    constructor(service: IConversionService) {
+    constructor(service: IAccountConversionService) {
         this.service = service;
     }
 
