@@ -1,12 +1,12 @@
 import { IAccount } from "../../types";
-import AccountConversionController from "./controllers/AccountConversionController";
-import AccountConversionService from "./services/AccountConversionService";
-import TrxSignatureController from "./controllers/TrxSignatureController";
-import TrxSignatureService from "./services/TrxSignatureService";
-import TokenController from "./controllers/TokenController";
-import TokenService from "./services/TokenService";
 import AccountCheckController from "./controllers/AccountCheckController";
+import AccountConversionController from "./controllers/AccountConversionController";
+import TokenController from "./controllers/TokenController";
+import TxSignatureController from "./controllers/TxSignatureController";
 import AccountCheckService from "./services/AccountCheckService";
+import AccountConversionService from "./services/AccountConversionService";
+import TokenService from "./services/TokenService";
+import TxSignatureService from "./services/TxSignatureService";
 
 
 export default class AccountHandler implements IAccount {
@@ -48,13 +48,13 @@ export default class AccountHandler implements IAccount {
 
 
     public signTransactionBytes(unsignedTransactionBytesHex: string, passphrase: string): string {
-        const controller = new TrxSignatureController(new TrxSignatureService());
+        const controller = new TxSignatureController(new TxSignatureService());
         return controller.signBytes(unsignedTransactionBytesHex, passphrase);
     }
 
 
     public verifyTransactionBytes(unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string): boolean {
-        const controller = new TrxSignatureController(new TrxSignatureService());
+        const controller = new TxSignatureController(new TxSignatureService());
         return controller.verifyBytes(unsignedTransactionBytesHex, transactionType, transactionJSON, publicKey);
     }
 

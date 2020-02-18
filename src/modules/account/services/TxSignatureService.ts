@@ -1,7 +1,8 @@
 import ardorjs from "ardorjs";
+import { ITxSignatureService } from "../../internal-types";
 
 
-export default class TrxSignatureService {
+export default class TxSignatureService implements ITxSignatureService {
 
     public signBytes(unsignedTrxBytesHex: string, passphrase: string): string {
         return ardorjs.signTransactionBytes(unsignedTrxBytesHex, passphrase);

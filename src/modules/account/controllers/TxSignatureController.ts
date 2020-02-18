@@ -1,11 +1,11 @@
-import { ITrxSignatureService } from "../../internal-types";
+import { ITxSignatureService } from "../../internal-types";
 
 
-export default class TrxSignatureController {
-    private readonly service: ITrxSignatureService
+export default class TxSignatureController {
+    private readonly service: ITxSignatureService
 
 
-    constructor(service: ITrxSignatureService) {
+    constructor(service: ITxSignatureService) {
         this.service = service;
     }
 
