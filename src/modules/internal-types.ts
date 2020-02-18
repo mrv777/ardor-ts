@@ -1,3 +1,5 @@
+import { objectAny } from "../types";
+
 export interface IPassphraseService {
     run(): string;
 }
@@ -13,7 +15,7 @@ export interface IAccountConversionService {
     publicKeyToRs(publicKey: string): string;
 }
 
-export interface ITrxSignatureService {
+export interface ITxSignatureService {
     signBytes(unsignedTrxBytesHex: string, passphrase: string): string;
     verifyBytes(unsignedTrxBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string): boolean;
 }
@@ -33,4 +35,9 @@ export interface ITimeConversionService {
     ardorToUnixMainnet(timestamp: number): number;
     unixToArdorTestnet(timestampInMsec: number): number;
     unixToArdorMainnet(timestampInMsec: number): number;
+}
+
+
+export interface IRequestService {
+    run(requestType: string, url: string, params: objectAny): Promise<objectAny>;
 }
