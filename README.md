@@ -50,7 +50,7 @@ This module creates requests to communicate with an ardor node. It handles get r
 
 Each function has the following singature:
 ````
-functionName : (url: string, params: FunctionNameParams) => Promise<FunctionNameResponse>
+functionName(url: string, params: FunctionNameParams): Promise<FunctionNameResponse>
 ````
 The *functionName* corresponds to the ardor API request type, the *functionName*Params interface to the request parameters and the *functionName*Response interface to the JSON response properties (see [API console](https://testardor.jelurida.com/test)).
 
@@ -131,7 +131,7 @@ The Account module is a wrapper of a forked [version](https://github.com/Atzen2/
 It provides the following APIs:
 
 ````typescript
-- convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean): string | Array<number> // toByteArray defaults to false
+- convertPassphraseToPublicKey(passphrase: string, toByteArray?: boolean): string | Array<number> // toByteArray defaults to false
 - convertPublicKeyToAccountId(publicKey: string): string
 - convertPublicKeyToAccountRs(publicKey: string): string
 - convertPassphraseToAccountId(passphrase: string): string
