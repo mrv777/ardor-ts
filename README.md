@@ -106,22 +106,22 @@ The following requests are implemented:
 #### get requests
 
 ````typescript
-- decodeToken: (url: string, params: DecodeTokenParams) => Promise<DecodeTokenResponse>
-- getAccountProperties: (url: string, params: GetAccountPropertiesParams) => Promise<GetAccountPropertiesResponse>
-- getBalance: (url: string, params: GetBalanceParams) => Promise<GetBalanceResponse>
-- getBlockchainTransactions: (url: string, params: GetBlockchainTransactionsParams) => Promise<GetBlockchainTransactionsResponse>
-- getBundlerRates: (url: string, params: GetBundlerRatesParams) => Promise<GetBundlerRatesResponse>
+- decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse>
+- getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse>
+- getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse>
+- getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse>
+- getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse>
 - getTransaction(url: string, params: GetTransactionParams): Promise<GetTransactionResponse>
 ````
 
 #### transaction post requests
 
 ````typescript
-- broadcastTransaction: (url: string, params: BroadcastTransactionParams) => Promise<BroadcastTransactionResponse>
-- deleteAccountProperty: (url: string, params: DeleteAccountPropertyParams) => Promise<DeleteAccountPropertyResponse>
-- sendMessage: (url: string, params: SendMessageParams) => Promise<SendMessageResponse>
-- sendMoney: (url: string, params: SendMoneyParams) => Promise<SendMoneyResponse>
-- setAccountProperty: (url: string, params: SetAccountPropertyParams) => Promise<SetAccountPropertyResponse>
+- broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse>
+- deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse>
+- sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse>
+- sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>
+- setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>
 ````
 
 ### Account
@@ -131,15 +131,15 @@ The Account module is a wrapper of a forked [version](https://github.com/Atzen2/
 It provides the following APIs:
 
 ````typescript
-- convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean) => string | Array<number> // toByteArray defaults to false
-- convertPublicKeyToAccountId: (publicKey: string) => string
-- convertPublicKeyToAccountRs: (publicKey: string) => string
-- convertPassphraseToAccountId: (passphrase: string) => string
-- convertPassphraseToAccountRs: (passphrase: string) => string
-- checkAccountRs: (accountRs: string) => boolean // ok => true, error => false
-- generateToken: (message: string, passphrase: string, forTestnet?: boolean) => string // forTestnet defaults to false
-- signTransactionBytes: (unsignedTransactionBytesHex: string, passphrase: string) => string
-- verifyTransactionBytes: (unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string) => boolean
+- convertPassphraseToPublicKey: (passphrase: string, toByteArray?: boolean): string | Array<number> // toByteArray defaults to false
+- convertPublicKeyToAccountId(publicKey: string): string
+- convertPublicKeyToAccountRs(publicKey: string): string
+- convertPassphraseToAccountId(passphrase: string): string
+- convertPassphraseToAccountRs(passphrase: string): string
+- checkAccountRs(accountRs: string): boolean // ok => true, error => false
+- generateToken(message: string, passphrase: string, forTestnet?: boolean): string // forTestnet defaults to false
+- signTransactionBytes(unsignedTransactionBytesHex: string, passphrase: string): string
+- verifyTransactionBytes(unsignedTransactionBytesHex: string, transactionType: string, transactionJSON: object, publicKey: string): boolean
 ````
 
 
@@ -150,7 +150,7 @@ This module provides passphrase generation. It uses the [bip39](https://github.c
 API:
 
 ````typescript
- - generate: () => string
+ - generate(): string
 ````
 
 
@@ -161,8 +161,8 @@ The Time module handles conversions between Ardor epoch timestamps and unix time
 It provides the following APIs:
 
 ````typescript
-- convertUnixToArdorTimestamp: (timestampInMsec: number, isTestnetTimestamp?: boolean) => number // isTestnetTimestamp defaults to false
-- convertArdorToUnixTimestamp: (timestamp: number, isTestnetTimestamp?: boolean) => number // isTestnetTimestamp defaults to false
+- convertUnixToArdorTimestamp(timestampInMsec: number, isTestnetTimestamp?: boolean): number // isTestnetTimestamp defaults to false
+- convertArdorToUnixTimestamp(timestamp: number, isTestnetTimestamp?: boolean): number // isTestnetTimestamp defaults to false
 ````
 
 

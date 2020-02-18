@@ -324,7 +324,7 @@ export interface IRequest {
 
 
 export interface IPassphrase {
-    generate: () => string;
+    generate(): string;
 }
 
 
