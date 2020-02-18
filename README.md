@@ -111,6 +111,7 @@ The following requests are implemented:
 - getBalance: (url: string, params: GetBalanceParams) => Promise<GetBalanceResponse>
 - getBlockchainTransactions: (url: string, params: GetBlockchainTransactionsParams) => Promise<GetBlockchainTransactionsResponse>
 - getBundlerRates: (url: string, params: GetBundlerRatesParams) => Promise<GetBundlerRatesResponse>
+- getTransaction(url: string, params: GetTransactionParams): Promise<GetTransactionResponse>
 ````
 
 #### transaction post requests

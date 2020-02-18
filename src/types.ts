@@ -213,6 +213,43 @@ export type GetAccountPropertiesResponse = {
 }
 
 
+export type GetTransactionParams = {
+    chain: ChainId;
+    fullHash: string;
+    [name: string]: secureAny;
+}
+
+export type GetTransactionResponse = {
+    signature: string;
+    transactionIndex: number;
+    type: ChildTransactionType | ParentTransactionType;
+    subtype: ChildTransactionSubtype | ParentTransactionSubtype;
+    fxtTransaction: string;
+    phased: boolean;
+    ecBlockId: string;
+    signatureHash: string;
+    attachment: objectAny;
+    senderRS: string;
+    amountNQT: string;
+    recipientRS: string;
+    block: string;
+    blockTimestamp: number;
+    deadline: number;
+    timestamp: number;
+    height: number;
+    senderPublicKey: string;
+    chain: ChainId;
+    feeNQT: string;
+    requestProcessingTime: number;
+    confirmations: number;
+    fullHash: string;
+    version: number;
+    sender: string;
+    recipient: string;
+    ecBlockHeight: number;
+}
+
+
 export type SendMoneyParams = {
     chain: ChainId;
     secretPhrase: string;
@@ -279,6 +316,7 @@ export interface IRequest {
     getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse>;
     getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse>;
     getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse>;
+    getTransaction(url: string, params: GetTransactionParams): Promise<GetTransactionResponse>;
     sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse>;
     sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>;
     setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>;

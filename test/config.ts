@@ -66,6 +66,10 @@ const config = {
             testnet: 1569964827000,
             mainnet: 1569965267000
         }
+    },
+    transaction: {
+        fullHash: "f0ff38e32214bcedd6c08e7a688defa1d632ae3139764423f8d26b91c949e61d",
+        message: "module-test-1582036400563"
     }
 };
 

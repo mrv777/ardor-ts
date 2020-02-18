@@ -1,4 +1,4 @@
-import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams, SendMessageParams } from "../src/index";
+import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams, SendMessageParams, ChildTransactionSubtype } from "../src/index";
 import config from "./config";
 
 
@@ -81,6 +81,16 @@ if (runGetRequests) {
 
             expect(response.requestProcessingTime).toBeDefined();
             expect(response.properties).toBeDefined();
+        });
+
+
+        test("getTransaction", async () => {
+            const response = await request.getTransaction(config.node.url.testnet, { chain: ChainId.IGNIS, fullHash: config.transaction.fullHash });
+
+            expect(response.fullHash).toBe(config.transaction.fullHash);
+            expect(response.type).toBe(ChildTransactionType.MESSAGING);
+            expect(response.subtype).toBe(ChildTransactionSubtype.MESSAGING__ARBITRARY_MESSAGE);
+            expect(response.attachment.message).toBe(config.transaction.message);
         });
 
     });
