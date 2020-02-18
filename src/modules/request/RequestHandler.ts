@@ -1,4 +1,4 @@
-import { BroadcastTransactionParams, BroadcastTransactionResponse, DecodeTokenParams, DecodeTokenResponse, DeleteAccountPropertyParams, DeleteAccountPropertyResponse, GetAccountPropertiesParams, GetAccountPropertiesResponse, GetBalanceParams, GetBalanceResponse, GetBlockchainTransactionsParams, GetBlockchainTransactionsResponse, GetBundlerRatesParams, GetBundlerRatesResponse, IRequest, SendMoneyParams, SendMoneyResponse, SetAccountPropertyParams, SetAccountPropertyResponse } from "../../types";
+import { BroadcastTransactionParams, BroadcastTransactionResponse, DecodeTokenParams, DecodeTokenResponse, DeleteAccountPropertyParams, DeleteAccountPropertyResponse, GetAccountPropertiesParams, GetAccountPropertiesResponse, GetBalanceParams, GetBalanceResponse, GetBlockchainTransactionsParams, GetBlockchainTransactionsResponse, GetBundlerRatesParams, GetBundlerRatesResponse, IRequest, SendMessageParams, SendMessageResponse, SendMoneyParams, SendMoneyResponse, SetAccountPropertyParams, SetAccountPropertyResponse } from "../../types";
 import BroadcastController from "./controllers/BroadcastController";
 import DecodeTokenController from "./controllers/DecodeTokenController";
 import DeleteAccountProperty from "./controllers/DeleteAccountPropertyController";
@@ -11,6 +11,7 @@ import SetAccountPropertyController from "./controllers/SetAccountPropertyContro
 import InfoRequestService from "./services/InfoRequestService";
 import TxBroadcastService from "./services/TxBroadcastService";
 import TxRequestService from "./services/TxRequestService";
+import SendMessageController from "./controllers/SendMessageController";
 
 
 export default class RequestHandler implements IRequest {
@@ -66,6 +67,12 @@ export default class RequestHandler implements IRequest {
 
     public async broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse> {
         const controller = new BroadcastController(new TxBroadcastService());
+        return controller.run(url, params);
+    }
+
+
+    public async sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse> {
+        const controller = new SendMessageController(new TxRequestService());
         return controller.run(url, params);
     }
 

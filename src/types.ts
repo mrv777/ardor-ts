@@ -260,16 +260,28 @@ export type DeleteAccountPropertyParams = {
 export type DeleteAccountPropertyResponse = BroadcastTransactionResponse
 
 
+export type SendMessageParams = {
+    chain: ChainId;
+    recipient: string;
+    message: string;
+    secretPhrase: string;
+    [name: string]: secureAny;
+}
+
+export type SendMessageResponse = BroadcastTransactionResponse
+
+
 export interface IRequest {
+    broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse>;
+    decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse>;
+    deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse>;
+    getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse>;
     getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse>;
     getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse>;
-    decodeToken(url: string, params: DecodeTokenParams): Promise<DecodeTokenResponse>;
     getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse>;
-    getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse>;
+    sendMessage(url: string, params: SendMessageParams): Promise<SendMessageResponse>;
     sendMoney(url: string, params: SendMoneyParams): Promise<SendMoneyResponse>;
-    broadcastTransaction(url: string, params: BroadcastTransactionParams): Promise<BroadcastTransactionResponse>;
     setAccountProperty(url: string, params: SetAccountPropertyParams): Promise<SetAccountPropertyResponse>;
-    deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse>;
 }
 
 

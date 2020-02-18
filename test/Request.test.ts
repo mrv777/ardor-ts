@@ -1,4 +1,4 @@
-import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams } from "../src/index";
+import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams, SendMessageParams } from "../src/index";
 import config from "./config";
 
 
@@ -187,6 +187,23 @@ if (runPostRequests) {
 
                 expect(deleteResponse.fullHash).toBeDefined();
                 expect(deleteResponse.requestProcessingTime).toBeDefined();
+            });
+        }
+
+
+        if (postTransactionRequests.sendMessage) {
+            test("sendMessage", async () => {
+                const params: SendMessageParams = {
+                    chain: ChainId.IGNIS,
+                    secretPhrase: config.account.alice.secret,
+                    recipient: config.account.bob.address,
+                    message: "module-test-" + Date.now()
+                };
+
+                const response = await request.sendMessage(config.node.url.testnet, params);
+
+                expect(response.fullHash).toBeDefined();
+                expect(response.requestProcessingTime).toBeDefined();
             });
         }
 

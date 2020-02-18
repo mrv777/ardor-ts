@@ -6,7 +6,8 @@ const config = {
                 runTests: false,
                 sendMoney: true,
                 setAccountProperty: true,
-                deleteAccountProperty: true
+                deleteAccountProperty: true,
+                sendMessage: true
             }
         },
         passphraseModule: true,

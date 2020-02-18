@@ -106,20 +106,21 @@ The following requests are implemented:
 #### get requests
 
 ````typescript
+- decodeToken: (url: string, params: DecodeTokenParams) => Promise<DecodeTokenResponse>
+- getAccountProperties: (url: string, params: GetAccountPropertiesParams) => Promise<GetAccountPropertiesResponse>
 - getBalance: (url: string, params: GetBalanceParams) => Promise<GetBalanceResponse>
 - getBlockchainTransactions: (url: string, params: GetBlockchainTransactionsParams) => Promise<GetBlockchainTransactionsResponse>
-- decodeToken: (url: string, params: DecodeTokenParams) => Promise<DecodeTokenResponse>
 - getBundlerRates: (url: string, params: GetBundlerRatesParams) => Promise<GetBundlerRatesResponse>
-- getAccountProperties: (url: string, params: GetAccountPropertiesParams) => Promise<GetAccountPropertiesResponse>
 ````
 
 #### transaction post requests
 
 ````typescript
-- sendMoney: (url: string, params: SendMoneyParams) => Promise<SendMoneyResponse>
 - broadcastTransaction: (url: string, params: BroadcastTransactionParams) => Promise<BroadcastTransactionResponse>
-- setAccountProperty: (url: string, params: SetAccountPropertyParams) => Promise<SetAccountPropertyResponse>
 - deleteAccountProperty: (url: string, params: DeleteAccountPropertyParams) => Promise<DeleteAccountPropertyResponse>
+- sendMessage: (url: string, params: SendMessageParams) => Promise<SendMessageResponse>
+- sendMoney: (url: string, params: SendMoneyParams) => Promise<SendMoneyResponse>
+- setAccountProperty: (url: string, params: SetAccountPropertyParams) => Promise<SetAccountPropertyResponse>
 ````
 
 ### Account
