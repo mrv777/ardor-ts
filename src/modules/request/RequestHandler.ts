@@ -8,7 +8,7 @@ import GetBlockchainTransactionsController from "./controllers/GetBlockchainTran
 import GetBundlerRatesController from "./controllers/GetBundlerRatesController";
 import SendMoneyController from "./controllers/SendMoneyController";
 import SetAccountPropertyController from "./controllers/SetAccountPropertyController";
-import InfoRequestService from "./services/infoRequestService";
+import InfoRequestService from "./services/InfoRequestService";
 import TxBroadcastService from "./services/TxBroadcastService";
 import TxRequestService from "./services/TxRequestService";
 
