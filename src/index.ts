@@ -1,9 +1,9 @@
 /* eslint-disable max-classes-per-file */
 import { IRequest, ITime, IPassphrase, IAccount } from "./types";
-import RequestHandler from "./modules/RequestHandler";
-import TimeConverter from "./modules/TimeConverter";
-import AccountHandler from "./modules/AccountHandler";
-import PassphraseGenerator from "./modules/PassphraseGenerator";
+import RequestHandler from "./modules/request/RequestHandler";
+import TimeConverter from "./modules/time/TimeConverter";
+import AccountHandler from "./modules/account/AccountHandler";
+import PassphraseGenerator from "./modules/passphrase/PassphraseGenerator";
 
 export * from "./types";
 
