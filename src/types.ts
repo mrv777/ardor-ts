@@ -302,6 +302,20 @@ export type SendMessageParams = {
     recipient: string;
     message: string;
     secretPhrase: string;
+    messageIsText?: boolean;
+    recipientPublicKey?: string;
+    messageIsPrunable?: boolean;
+    messageToEncrypt?: string;
+    messageToEncryptIsText?: string;
+    encryptedMessageData?: string;
+    encryptedMessageNonce?: number;
+    encryptedMessageIsPrunable?: boolean;
+    compressMessageToEncrypt?: boolean;
+    messageToEncryptToSelf?: string;
+    messageToEncryptToSelfIsText?: boolean;
+    encryptToSelfMessageData?: string;
+    encryptToSelfMessageNonce?: number;
+    compressMessageToEncryptToSelf?: boolean;
     [name: string]: secureAny;
 }
 
