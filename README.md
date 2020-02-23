@@ -3,7 +3,8 @@
 An [Ardor](https://ardorplatform.org) client library written in [TypeScript](https://www.typescriptlang.org).
 
 
-## Install
+
+## Installation
 
 At the current state this library is published to the GitHub npm registry only.
 To use it as a dependency, create an *.npmrc* file in the same directory as your *package.json* and add the following line 
@@ -12,7 +13,7 @@ To use it as a dependency, create an *.npmrc* file in the same directory as your
 @blobaa:registry=https://npm.pkg.github.com/blobaa
 ```` 
 
-This tells npm to use the GitHub registry for scoped blobaa packages.
+This tells npm to use the GitHub registry for scoped packages.
 You can now install the npm package via
 
 ````
@@ -22,21 +23,44 @@ npm install @blobaa/ardor-ts@<release version>
 More information can be found at the [npm package](https://github.com/blobaa/ardor-ts/packages/129759) description and [this medium post](https://medium.com/@crysfel/using-different-registries-in-yarn-and-npm-766541d6f851) about multiple registry usage.
 
 
-## Test
+## Development
+
+You need to have [Node.js](https://nodejs.org/en/) installed.
+
+To **initialize** the project just clone this repository and run
+```
+npm install
+```
+
+For **linting** run 
+```
+npm run lint
+```
+
+You can try to **autofix lint errors** with
+```
+npm run fix-lint
+```
+
+For **unit testing** run the following associated commands
 
 browser:
-````
+```
 npm run test-browser
-````
+```
 
-node:
-````
+node: 
+```
 npm run test-node
-````
+```
 
-`npm test` runs both tests.
+both: 
+```
+npm test
+```
 
-Because broadcasting a transaction costs fees, the transaction post request tests are disabled by default in the test configuration. You can change the configuration in `test/config.ts`.
+
+Because broadcasting a transaction costs fees, the transaction post request tests are disabled by default. You can enable them in the `test/config.ts` file.
 
 
 ## APIs
