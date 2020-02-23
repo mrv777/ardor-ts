@@ -1,5 +1,5 @@
-import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams, SendMessageParams, ChildTransactionSubtype } from "../src/index";
-import config from "./config";
+import { ChainId, ChildTransactionType, DeleteAccountPropertyParams, ErrorResponse, GetBlockchainTransactionsParams, request, SendMoneyParams, SetAccountPropertyParams, SendMessageParams, ChildTransactionSubtype, UploadTaggedDataParams } from "../../src/index";
+import config from "../config";
 
 
 const runGetRequests = config.test.requestModule.getInformationRequests;
@@ -180,10 +180,14 @@ if (runPostRequests) {
                 });
 
                 let propertyName = "";
-                if (propertiesSetByAlice.length < 1) {fail("bob has no module test property set")}
+                if (propertiesSetByAlice.length < 1) {
+                    fail("bob has no module test property set");
+                }
 
                 const lastProperty = propertiesSetByAlice[propertiesSetByAlice.length - 1] || undefined;
-                if (lastProperty) {propertyName = lastProperty.property}
+                if (lastProperty) {
+                    propertyName = lastProperty.property;
+                }
 
 
                 const params: DeleteAccountPropertyParams = {
@@ -211,6 +215,23 @@ if (runPostRequests) {
                 };
 
                 const response = await request.sendMessage(config.node.url.testnet, params);
+
+                expect(response.fullHash).toBeDefined();
+                expect(response.requestProcessingTime).toBeDefined();
+            });
+        }
+
+
+        if (postTransactionRequests.uploadTaggedData) {
+            test("uploadTaggedData", async () => {
+                const params: UploadTaggedDataParams = {
+                    chain: ChainId.IGNIS,
+                    secretPhrase: config.account.alice.secret,
+                    data: "hello world!",
+                    name: "module-test-" + Date.now()
+                };
+
+                const response = await request.uploadTaggedData(config.node.url.testnet, params);
 
                 expect(response.fullHash).toBeDefined();
                 expect(response.requestProcessingTime).toBeDefined();

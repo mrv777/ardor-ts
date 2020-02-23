@@ -1,5 +1,5 @@
-import { time, Time } from "../src/index";
-import config from "./config";
+import { time, Time } from "../../src/index";
+import config from "../config";
 
 
 if (config.test.timeModule) {

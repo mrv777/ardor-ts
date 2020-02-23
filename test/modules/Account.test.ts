@@ -1,5 +1,5 @@
-import { account, Account, request, time } from "../src/index";
-import config from "./config";
+import { account, Account, request, time } from "../../src/index";
+import config from "../config";
 
 
 if (config.test.accountModule.runTests) {

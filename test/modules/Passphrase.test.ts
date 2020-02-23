@@ -1,5 +1,5 @@
-import { passphrase, Passphrase } from "../src/index";
-import config from "./config";
+import { passphrase, Passphrase } from "../../src/index";
+import config from "../config";
 
 
 if (config.test.passphraseModule) {
