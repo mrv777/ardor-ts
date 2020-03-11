@@ -56,7 +56,7 @@ export default class TxRequestService implements IRequestService {
         };
     }
 
-    private broadcast = async (url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<objectAny>> => {
+    private async broadcast(url: string, params: BroadcastTransactionParams): Promise<AxiosResponse<objectAny>> {
         return axios.post(url, qs.stringify(params), this.config);
     }
 }
