@@ -2,6 +2,12 @@
   "name": "@blobaa/ardor-ts",
   "version": "1.0.0",
   "description": "An Ardor client library written in TypeScript",
+  "author": "atz3n",
+  "license": "AGPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blobaa/ardor-ts"
+  },
   "main": "dist/src/index.js",
   "scripts": {
     "test": "npm run test-browser && npm run test-node",
@@ -12,15 +18,6 @@
     "test-build-browser": "jest --rootDir=dist --testEnvironment=jsdom",
     "lint": "eslint ./ --ext .ts",
     "fix-lint": "eslint ./ --fix --ext .ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/blobaa/ardor-ts"
-  },
-  "author": "atz3n",
-  "license": "ISC",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "devDependencies": {
     "@types/qs": "^6.5.3",
