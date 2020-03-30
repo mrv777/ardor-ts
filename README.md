@@ -6,7 +6,7 @@ An [Ardor](https://ardorplatform.org) client library written in [TypeScript](htt
 
 ## Installation
 
-This library is published to GitHub's and npmjs's npm registry.
+This library is published on GitHub's and npmjs's npm registry.
 
 
 ### Npmjs Registry
