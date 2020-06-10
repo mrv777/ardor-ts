@@ -1,9 +1,10 @@
-import { BroadcastTransactionParams, BroadcastTransactionResponse, DecodeTokenParams, DecodeTokenResponse, DeleteAccountPropertyParams, DeleteAccountPropertyResponse, GetAccountPropertiesParams, GetAccountPropertiesResponse, GetBalanceParams, GetBalanceResponse, GetBlockchainTransactionsParams, GetBlockchainTransactionsResponse, GetBundlerRatesParams, GetBundlerRatesResponse, GetTransactionParams, GetTransactionResponse, IRequest, SendMessageParams, SendMessageResponse, SendMoneyParams, SendMoneyResponse, SetAccountPropertyParams, SetAccountPropertyResponse } from "../../types";
+import { BroadcastTransactionParams, BroadcastTransactionResponse, DecodeTokenParams, DecodeTokenResponse, DeleteAccountPropertyParams, DeleteAccountPropertyResponse, GetAccountPropertiesParams, GetAccountPropertiesResponse, GetBalanceParams, GetBalanceResponse, GetBalancesParams, GetBalancesResponse, GetBlockchainTransactionsParams, GetBlockchainTransactionsResponse, GetBundlerRatesParams, GetBundlerRatesResponse, GetTransactionParams, GetTransactionResponse, IRequest, SendMessageParams, SendMessageResponse, SendMoneyParams, SendMoneyResponse, SetAccountPropertyParams, SetAccountPropertyResponse } from "../../types";
 import BroadcastController from "./controllers/BroadcastController";
 import DecodeTokenController from "./controllers/DecodeTokenController";
 import DeleteAccountProperty from "./controllers/DeleteAccountPropertyController";
 import GetAccountPropertiesController from "./controllers/GetAccountPropertiesController";
 import GetBalanceController from "./controllers/GetBalanceController";
+import GetBalancesController from "./controllers/GetBalancesController";
 import GetBlockchainTransactionsController from "./controllers/GetBlockchainTransactionsController";
 import GetBundlerRatesController from "./controllers/GetBundlerRatesController";
 import GetTransactionController from "./controllers/GetTransactionController";
@@ -20,6 +21,11 @@ export default class RequestHandler implements IRequest {
 
     public async getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse> {
         const controller = new GetBalanceController(new InfoRequestService());
+        return controller.run(url, params);
+    }
+
+    public async getBalances(url: string, params: GetBalancesParams): Promise<GetBalancesResponse> {
+        const controller = new GetBalancesController(new InfoRequestService());
         return controller.run(url, params);
     }
 

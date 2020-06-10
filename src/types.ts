@@ -6,10 +6,18 @@ export type objectAny = {[name: string]: secureAny};
 
 export enum ChainId {
     ARDOR = 1,
-    IGNIS,
-    AEUR,
-    BITSWIFT,
-    MPG
+    IGNIS= 2,
+    AEUR = 3,
+    BITSWIFT = 4,
+    MPG = 5
+}
+
+export enum ChainDecimals {
+    ARDOR = 8,
+    IGNIS = 8,
+    AEUR = 4,
+    BITSWIFT = 8,
+    MPG = 8
 }
 
 
@@ -27,9 +35,47 @@ export type GetBalanceParams = {
     requireLastBlock?: number;
 }
 
+export type GetBalancesParams = {
+    chain: ChainId;
+    chain2?: ChainId;
+    chain3?: ChainId;
+    chain4?: ChainId;
+    chain5?: ChainId;
+    account: string;
+    height?: number;
+    requireBlock?: number;
+    requireLastBlock?: number;
+}
+
 export type GetBalanceResponse = {
     unconfirmedBalanceNQT: string;
     balanceNQT: string;
+    requestProcessingTime: number;
+}
+
+export type GetBalancesResponse = {   
+    balances: {
+        1: {
+            unconfirmedBalanceNQT: string;
+            balanceNQT: string;
+        };
+        2?: {
+            unconfirmedBalanceNQT: string;
+            balanceNQT: string;
+        };
+        3?: {
+            unconfirmedBalanceNQT: string;
+            balanceNQT: string;
+        };
+        4?: {
+            unconfirmedBalanceNQT: string;
+            balanceNQT: string;
+        };
+        5?: {
+            unconfirmedBalanceNQT: string;
+            balanceNQT: string;
+        };
+    };
     requestProcessingTime: number;
 }
 
@@ -255,6 +301,7 @@ export type SendMoneyParams = {
     secretPhrase: string;
     recipient: string;
     amountNQT: number;
+    message?: string;
     [name: string]: secureAny;
 }
 
@@ -328,6 +375,7 @@ export interface IRequest {
     deleteAccountProperty(url: string, params: DeleteAccountPropertyParams): Promise<DeleteAccountPropertyResponse>;
     getAccountProperties(url: string, params: GetAccountPropertiesParams): Promise<GetAccountPropertiesResponse>;
     getBalance(url: string, params: GetBalanceParams): Promise<GetBalanceResponse>;
+    getBalances(url: string, params: GetBalancesParams): Promise<GetBalancesResponse>;
     getBlockchainTransactions(url: string, params: GetBlockchainTransactionsParams): Promise<GetBlockchainTransactionsResponse>;
     getBundlerRates(url: string, params: GetBundlerRatesParams): Promise<GetBundlerRatesResponse>;
     getTransaction(url: string, params: GetTransactionParams): Promise<GetTransactionResponse>;

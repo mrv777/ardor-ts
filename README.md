@@ -2,6 +2,8 @@
 
 An [Ardor](https://ardorplatform.org) client library written in [TypeScript](https://www.typescriptlang.org).
 
+Forked from [blobaa](https://github.com/blobaa/ardor-ts) to add new functionality.
+
 
 
 ## Installation
